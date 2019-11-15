@@ -1,0 +1,8 @@
+
+<h3>{{cakeToShow.name}}</h3>
+<ul>
+    <li *ngFor="let rating of cakeToShow.ratings">
+        <h3>{{rating.stars}} stars:</h3>
+        <p>{{rating.comment}}</p>
+    </li>
+</ul>

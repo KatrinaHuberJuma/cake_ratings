@@ -1,0 +1,30 @@
+<ul>
+    <li *ngFor="let cake of cakes">
+      {{cake.name}} by {{cake.baker}} 
+      <img [src]="cake.imageUrl">
+      <div *ngIf="cakeToRateId != cake._id; else showRateForm">
+        <button (click)="selectCakeToRate(cake._id)">Rate?</button>
+      </div>
+      <ng-template #showRateForm>
+        <form  (submit)="rateCake(cake)">
+          <input type="number" name="stars" [(ngModel)]="rating.stars" />
+          <input type="text" name="comment" [(ngModel)]="rating.comment" />
+          <input type="submit" value="Add Rating"/>
+        </form>
+        
+      </ng-template>
+      <button (click)="cakeToShow(cake)">See Ratings</button>
+</li>
+  </ul>
+
+<ng-template >
+  <h2>Create Cake</h2>
+</ng-template>
+  
+  <form (submit)="onSubmit()">
+    <input type="text" name="name" [(ngModel)]="newCake.name" />
+    <input type="text" name="baker" [(ngModel)]="newCake.baker" />
+    <input type="submit" value="Create Cake" />
+  </form>
+
+<app-cake *ngIf="selectedCake" [cakeToShow]="selectedCake"></app-cake>
